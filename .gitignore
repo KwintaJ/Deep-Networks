@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+build/
+dist/
+
+# virtual environments
+.venv/
+venv/
+
+# experiment artefacts (any subproject)
+data/
+wandb/
+checkpoints/
+outputs/
+
+# macOS
+.DS_Store
+
+# PDF files are kept in the repo on purpose (course papers)
+!*.pdf

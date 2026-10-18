@@ -23,3 +23,7 @@ outputs/
 
 # PDF files are kept in the repo on purpose (course papers)
 !*.pdf
+
+# claude code config and notes, local only
+CLAUDE.md
+.claude/

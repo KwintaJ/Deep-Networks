@@ -1,4 +1,4 @@
-# train highway net on cifar100, log to wandb
+# train highway net on cifar10, log to wandb
 # usage: python train.py
 #        python train.py depth=100 epochs=50 device=cpu wandb=false
 #        python train.py depth=100 resume=true   (continue from checkpoints/<name>.pt)
@@ -37,11 +37,11 @@ CONFIG = dict(
     suffix="",           # appended to run name, eg _lr0.1
     wandb=True,
     entity="jankwinta-ju",
-    project="highway-networks",
+    project="highway-networks-cifar10",
 )
 
-MEAN, STD = (0.5071, 0.4865, 0.4409), (0.2673, 0.2564, 0.2762)
-MIRROR = "https://data.brainchip.com/dataset-mirror/cifar100/cifar-100-python.tar.gz"
+MEAN, STD = (0.4914, 0.4822, 0.4465), (0.2470, 0.2435, 0.2616)
+MIRROR = "https://data.brainchip.com/dataset-mirror/cifar10/cifar-10-python.tar.gz"
 
 
 def parse_args(cfg):
@@ -67,13 +67,13 @@ def pick_device(name):
 def get_data(cfg, root="data"):
     root = Path(root)
     root.mkdir(exist_ok=True)
-    archive = root / "cifar-100-python.tar.gz"
-    if not archive.exists() and not (root / "cifar-100-python").exists():
-        print("downloading cifar100 from mirror")
+    archive = root / "cifar-10-python.tar.gz"
+    if not archive.exists() and not (root / "cifar-10-batches-py").exists():
+        print("downloading cifar10 from mirror")
         urllib.request.urlretrieve(MIRROR, archive)
     tf = transforms.Compose([transforms.ToTensor(), transforms.Normalize(MEAN, STD)])
-    train = datasets.CIFAR100(root, train=True, download=True, transform=tf)
-    test = datasets.CIFAR100(root, train=False, download=True, transform=tf)
+    train = datasets.CIFAR10(root, train=True, download=True, transform=tf)
+    test = datasets.CIFAR10(root, train=False, download=True, transform=tf)
     perm = torch.randperm(len(train), generator=torch.Generator().manual_seed(cfg["seed"])).tolist()
     val_idx, train_idx = perm[: cfg["val_size"]], perm[cfg["val_size"] :]
     if cfg["subset"]:

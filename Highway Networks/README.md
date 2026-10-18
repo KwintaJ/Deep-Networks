@@ -1,6 +1,6 @@
-# Highway Networks on CIFAR-100
+# Highway Networks on CIFAR-10
 
-PyTorch implementation of Highway Networks (Srivastava, Greff, Schmidhuber, 2015) trained on CIFAR-100
+PyTorch implementation of Highway Networks (Srivastava, Greff, Schmidhuber, 2015) trained on CIFAR-10
 
 ## Math
 
@@ -8,7 +8,7 @@ PyTorch implementation of Highway Networks (Srivastava, Greff, Schmidhuber, 2015
 
 - gate bias starts negative so the net starts as identity (paper: -4)
 - other weights he init
-- first layer is plain, changes dim 3072 -> 50, then depth-1 highway layers of 50 blocks, softmax 100
+- first layer is plain, changes dim 3072 -> 50, then depth-1 highway layers of 50 blocks, softmax 10
 
 ## Run
 
@@ -19,4 +19,4 @@ python train.py                                   # defaults, depth 50
 python train.py depth=100 epochs=400 device=cpu   # any CONFIG key can be overridden
 ```
 
-First run downloads cifar100 dataset (from a mirror)
+First run downloads cifar10 dataset (from a mirror)

@@ -27,3 +27,7 @@ outputs/
 # claude code config and notes, local only
 CLAUDE.md
 .claude/
+
+# old cifar100 results, kept locally
+figures-cifar100/
+checkpoints-cifar100/

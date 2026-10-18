@@ -33,7 +33,7 @@ class HighwayNet(nn.Module):
     # first layer is plain and changes dim (3072 -> width)
     # then depth-1 highway layers, then linear to classes
     # depth = total hidden layers
-    def __init__(self, depth=50, width=50, act="tanh", gate_bias=-4.0, in_dim=3 * 32 * 32, classes=100):
+    def __init__(self, depth=50, width=50, act="tanh", gate_bias=-4.0, in_dim=3 * 32 * 32, classes=10):
         super().__init__()
         self.inp = nn.Linear(in_dim, width)
         self.act = ACT[act]()

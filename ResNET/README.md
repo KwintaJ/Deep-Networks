@@ -24,3 +24,21 @@ python train.py depth=110 warmup=400             # paper warms up resnet110 at l
 ```
 
 First run downloads cifar10 dataset (from a mirror)
+
+## Results
+
+Test error after 64k iters, one run each, trained on 45k images (paper uses 50k)
+
+| depth | plain | resnet | paper resnet |
+|---|---|---|---|
+| 20 | 9.79% | 8.24% | 8.75% |
+| 32 | 10.15% | 8.18% | 7.51% |
+| 44 | 10.92% | 7.29% | 7.17% |
+| 56 | 12.35% | 8.32% | 6.97% |
+| 110 | - | 7.32% | 6.43% |
+
+- plain nets get worse with depth, on the train set too (plain56 4.05% vs plain20 0.85% train error), so its an optimization problem, not overfitting
+- resnets dont degrade, train error goes down with depth
+- resnet layer responses are smaller than plain ones and shrink with depth (fig7)
+
+Figures in `figures/`, runs in wandb `jankwinta-ju/resnet-cifar10`
